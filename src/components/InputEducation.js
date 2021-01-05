@@ -18,11 +18,10 @@ class InputEducation extends Component {
     this.setState({
       [e.target.name]: e.target.value,
     });
-    console.log(this.state);
   };
 
   render() {
-    const { id } = this.props;
+    const { id, formMode, deleteMethod } = this.props;
     return (
       <div className="form-group row" data-id={id}>
         <InputText
@@ -30,26 +29,34 @@ class InputEducation extends Component {
           inputName="schoolName"
           colClass="col-12 col-sm-6"
           onChange={this.handleChange}
+          formMode={formMode}
         />
         <InputText
           inputLabel="Degree or Title of Study"
           inputName="studyTitle"
           colClass="col-12 col-sm-6"
           onChange={this.handleChange}
+          formMode={formMode}
         />
         <InputDate
           inputLabel="Start Date"
           inputName="educationStartDate"
           colClass="col-12 col-sm-6"
           onChange={this.handleChange}
+          formMode={formMode}
         />
         <InputDate
           inputLabel="End Date"
           inputName="educationEndDate"
           colClass="col-12 col-sm-6"
           onChange={this.handleChange}
+          formMode={formMode}
         />
-        <Button text="remove" type="delete"/>
+        {formMode === "edit" ? (
+          <Button text="remove" type="delete" id={id} onClick={deleteMethod} />
+        ) : (
+          ""
+        )}
       </div>
     );
   }

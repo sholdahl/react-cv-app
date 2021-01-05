@@ -1,7 +1,7 @@
 import React from "react";
 
 const Button = (props) => {
-  const { text, type } = props;
+  const { text, type, onClick, id } = props;
   let btnClasses = "";
 
   if (type === "delete") {
@@ -12,7 +12,7 @@ const Button = (props) => {
   }
   return (
     <div className="col text-center m-4">
-      <button className={btnClasses}>{text}</button>
+      <button className={btnClasses} onClick={onClick} data-id={id}>{text}</button>
     </div>
   );
 };

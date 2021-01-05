@@ -1,7 +1,7 @@
 import React from "react";
 
 const InputDate = (props) => {
-  const { inputLabel, inputName, colClass, onChange } = props;
+  const { inputLabel, inputName, colClass, onChange, formMode } = props;
 
   var today = new Date();
   var dd = today.getDate();
@@ -18,8 +18,14 @@ const InputDate = (props) => {
   return (
     <div className={`input-group ${colClass}`}>
       <label className="input-label">{inputLabel}</label>
-      <input type="date" name={inputName} max={today} onChange={onChange}>
-      </input>
+      <input
+        type="date"
+        name={inputName}
+        max={today}
+        onChange={onChange}
+        className={formMode === "edit" ? "" : "input-disabled"}
+        readOnly={formMode === "edit" ? "" : "readonly"}
+      ></input>
     </div>
   );
 };

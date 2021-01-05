@@ -9,9 +9,10 @@ class Education extends Component {
   constructor() {
     super();
     this.state = {
-      educationRecords: [0],
+      educationRecords: [uniqid()]
     };
     this.handleChange = this.handleChange.bind(this);
+    this.deleteFormGroup = this.deleteFormGroup.bind(this);
   }
 
   handleChange = (e) => {
@@ -20,7 +21,19 @@ class Education extends Component {
     });
   };
 
+  deleteFormGroup = (e) => {
+    let array = this.state.educationRecords;
+    const index = array.indexOf(e.target.getAttribute("data-id"));
+    if (index > -1) {
+      array.splice(index, 1);
+    }
+    this.setState({
+      educationRecords: array,
+    });
+  };
+
   render() {
+    const { formMode } = this.props;
     return (
       <div className="education-row row justify-content-center">
         <div className="col section-col m-4 form-bg">
@@ -30,9 +43,16 @@ class Education extends Component {
           <SectionTitle title="Education" />
           <div className="row">
             {this.state.educationRecords.map((educationID) => {
-              return <InputEducation id={educationID} key={educationID} />;
+              return (
+                <InputEducation
+                  id={educationID}
+                  key={educationID}
+                  formMode={formMode}
+                  deleteMethod={this.deleteFormGroup}
+                />
+              );
             })}
-            <AddMore handleChange={this.handleChange} />
+            {formMode === "edit" ? <AddMore handleChange={this.handleChange} /> : ""}
           </div>
         </div>
       </div>

@@ -19,11 +19,10 @@ class InputExperience extends Component {
     this.setState({
       [e.target.name]: e.target.value,
     });
-    console.log(this.state);
   };
 
   render() {
-    const { id } = this.props;
+    const { id, formMode, deleteMethod } = this.props;
     return (
       <div className="form-group row" data-id={id}>
         <InputText
@@ -31,32 +30,41 @@ class InputExperience extends Component {
           inputName="companyName"
           colClass="col-12 col-sm-6"
           onChange={this.handleChange}
+          formMode={formMode}
         />
         <InputText
           inputLabel="Job Title"
           inputName="jobTitle"
           colClass="col-12 col-sm-6"
           onChange={this.handleChange}
+          formMode={formMode}
         />
         <InputDate
           inputLabel="Start Date"
           inputName="experienceStartDate"
           colClass="col-12 col-sm-6"
           onChange={this.handleChange}
+          formMode={formMode}
         />
         <InputDate
           inputLabel="End Date"
           inputName="experienceEndDate"
           colClass="col-12 col-sm-6"
           onChange={this.handleChange}
+          formMode={formMode}
         />
         <InputTextArea
           inputLabel="Job Description"
           inputName="jobDescription1"
           colClass="col-12"
           onChange={this.handleChange}
+          formMode={formMode}
         />
-        <Button text="remove" type="delete"/>
+        {formMode === "edit" ? (
+          <Button text="remove" type="delete" id={id} onClick={deleteMethod} />
+        ) : (
+          ""
+        )}
       </div>
     );
   }

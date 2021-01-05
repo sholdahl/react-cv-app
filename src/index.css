@@ -81,6 +81,7 @@ textarea {
   transition: all ease-in-out 0.2s;
   padding: 5px 10px;
   color: #13003b;
+  transition: all 0.2s ease-in-out;
 }
 
 input:active,
@@ -91,6 +92,26 @@ textarea:focus {
   background: rgba(245, 245, 245, 0.9);
   box-shadow: 0px 0px 5px rgba(95, 10, 135, 0.5);
   transition: all ease-in-out 0.2s;
+}
+
+.input-disabled {
+  border: none;
+  background-image: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  padding-left: 0;
+  background: transparent;
+}
+
+.input-disabled:active,
+.input-disabled:focus,
+.input-disabled:-webkit-autofill,
+.input-disabled:-webkit-autofill:hover,
+.input-disabled:-webkit-autofill:focus,
+.input-disabled:-webkit-autofill:active {
+  box-shadow: none;
+  background: transparent;
 }
 
 .cv-btn {
@@ -115,8 +136,8 @@ textarea:focus {
   border: solid 2px #5f0a87;
 }
 
-.btn-outline-danger{
-    border-width: 2px;
+.btn-outline-danger {
+  border-width: 2px;
 }
 
 .add-more {
