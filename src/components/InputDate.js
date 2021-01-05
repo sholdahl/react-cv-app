@@ -1,7 +1,7 @@
 import React from "react";
 
 const InputDate = (props) => {
-  const { inputLabel, inputName, colClass } = props;
+  const { inputLabel, inputName, colClass, onChange } = props;
 
   var today = new Date();
   var dd = today.getDate();
@@ -17,8 +17,8 @@ const InputDate = (props) => {
 
   return (
     <div className={`input-group ${colClass}`}>
-      <label class="input-label">{inputLabel}</label>
-      <input type="date" name={inputName} max={today}>
+      <label className="input-label">{inputLabel}</label>
+      <input type="date" name={inputName} max={today} onChange={onChange}>
       </input>
     </div>
   );

@@ -1,13 +1,24 @@
 import React, { Component } from "react";
-import InputText from "./InputText";
 import { BookFill } from "react-bootstrap-icons";
 import SectionTitle from "./SectionTitle";
-import InputDate from "./InputDate";
+import AddMore from "./AddMore";
+import InputEducation from "./InputEducation";
+import uniqid from "uniqid";
 
 class Education extends Component {
   constructor() {
     super();
+    this.state = {
+      educationRecords: [0],
+    };
+    this.handleChange = this.handleChange.bind(this);
   }
+
+  handleChange = (e) => {
+    this.setState({
+      educationRecords: [...this.state.educationRecords, uniqid()],
+    });
+  };
 
   render() {
     return (
@@ -18,12 +29,10 @@ class Education extends Component {
           </div>
           <SectionTitle title="Education" />
           <div className="row">
-            <InputText inputLabel="School Name" inputName="schoolName" colClass="col-12 col-sm-6" />
-            <InputText
-              inputLabel="Degree or Title of Study" inputName="studyTitle" colClass="col-12 col-sm-6" />
-            <InputDate inputLabel="Start Date" inputName="educationStartDate" colClass="col-12 col-sm-6" />
-            <InputDate inputLabel="End Date" inputName="educationEndDate" colClass="col-12 col-sm-6" />
-
+            {this.state.educationRecords.map((educationID) => {
+              return <InputEducation id={educationID} key={educationID} />;
+            })}
+            <AddMore handleChange={this.handleChange} />
           </div>
         </div>
       </div>

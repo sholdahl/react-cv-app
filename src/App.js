@@ -17,7 +17,9 @@ class App extends Component {
         <General />
         <Education />
         <Experience />
-        <Button text="submit" />
+        <div className="row">
+          <Button text="submit" />
+        </div>
       </div>
     );
   }

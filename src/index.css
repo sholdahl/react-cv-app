@@ -41,7 +41,7 @@ h2 {
 }
 
 .form-bg {
-  background-color: rgba(245, 245, 245, 0.6);
+  background-color: rgba(245, 245, 245, 0.65);
   border-radius: 5px;
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
   padding: 40px;
@@ -71,7 +71,8 @@ label {
   margin: 7.5px 0;
 }
 
-input {
+input,
+textarea {
   display: block;
   width: 100%;
   border: 1px solid #5f0a87;
@@ -83,9 +84,69 @@ input {
 }
 
 input:active,
-input:focus {
+input:focus,
+textarea:active,
+textarea:focus {
   outline: none;
   background: rgba(245, 245, 245, 0.9);
   box-shadow: 0px 0px 5px rgba(95, 10, 135, 0.5);
   transition: all ease-in-out 0.2s;
+}
+
+.cv-btn {
+  background-color: #5f0a87;
+  color: #ffefff;
+  transition: all ease-in-out 0.2s;
+  border: solid 2px #5f0a87;
+}
+
+.cv-btn:active,
+.cv-btn:focus {
+  border: solid 2px #5f0a87;
+  background-color: #5f0a87;
+  color: #ffefff;
+  box-shadow: 0px 0px 5px rgba(95, 10, 135, 0.5);
+}
+
+.cv-btn:hover {
+  background: #ffefff;
+  color: #5f0a87;
+  transition: all ease-in-out 0.2s;
+  border: solid 2px #5f0a87;
+}
+
+.btn-outline-danger{
+    border-width: 2px;
+}
+
+.add-more {
+  margin: 15px 15px 0 15px;
+  color: rgba(95, 10, 135, 0.8);
+  transition: all ease-in-out 0.2s;
+  cursor: pointer;
+}
+
+.add-more:hover {
+  color: rgba(95, 10, 135, 1);
+  transition: all ease-in-out 0.2s;
+}
+
+.form-group {
+  position: relative;
+  margin-bottom: 0;
+}
+
+.form-group:not(:first-child)::before {
+  content: "";
+  position: absolute;
+  background-color: rgba(95, 10, 135, 0.3);
+  height: 3px;
+  width: 75%;
+  top: -12px;
+  margin: auto;
+  left: 0;
+  right: 0;
+}
+.form-group:not(:first-child) {
+  margin-top: 16px;
 }

@@ -1,11 +1,11 @@
 import React from "react";
 
 const InputEmail = (props) => {
-  const { colClass } = props;
+  const { colClass, onChange } = props;
   return (
     <div className={`input-group ${colClass}`}>
-      <label class="input-label">Email</label>
-      <input type="email" name="email" ></input>
+      <label className="input-label">Email</label>
+      <input type="email" name="email" onChange={onChange}></input>
     </div>
   );
 };

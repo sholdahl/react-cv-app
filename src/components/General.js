@@ -8,7 +8,19 @@ import SectionTitle from "./SectionTitle";
 class General extends Component {
   constructor() {
     super();
-  }
+    this.state = {
+      firstName: "",
+      lastName: "",
+      email: "",
+      phone: ""
+    };
+  };
+
+  handleChange = (e) => {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+  };
 
   render() {
     return (
@@ -19,10 +31,10 @@ class General extends Component {
           </div>
           <SectionTitle title="General" />
           <div className="row">
-            <InputText inputLabel="First Name" inputName="firstName" colClass="col-12 col-sm-6"/>
-            <InputText inputLabel="Last Name" inputName="lastName" colClass="col-12 col-sm-6"/>
-            <InputEmail colClass="col-12 col-sm-6"/>
-            <InputPhone colClass="col-12 col-sm-6"/>
+            <InputText inputLabel="First Name" inputName="firstName" colClass="col-12 col-sm-6" onChange={this.handleChange}/>
+            <InputText inputLabel="Last Name" inputName="lastName" colClass="col-12 col-sm-6" onchange={this.handleChange}/>
+            <InputEmail colClass="col-12 col-sm-6" onChange={this.handleChange}/>
+            <InputPhone colClass="col-12 col-sm-6"onChange={this.handleChange}/>
           </div>
         </div>
       </div>
