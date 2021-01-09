@@ -1,63 +1,50 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import { BriefcaseFill } from "react-bootstrap-icons";
 import SectionTitle from "./SectionTitle";
 import AddMore from "./AddMore";
 import InputExperience from "./InputExperience";
 import uniqid from "uniqid";
 
-class Experience extends Component {
-  constructor() {
-    super();
-    this.state = {
-      experienceRecords: [uniqid()],
-    };
-    this.handleChange = this.handleChange.bind(this);
-    this.deleteFormGroup = this.deleteFormGroup.bind(this);
-  }
+const Experience = (props) => {
+  const { formMode } = props;
+  const [experienceRecords, setExperienceRecords] = useState([uniqid()]);
 
-  handleChange = (e) => {
-    this.setState({
-      experienceRecords: [...this.state.experienceRecords, uniqid()],
-    });
+  const handleChange = (e) => {
+    setExperienceRecords([...experienceRecords, uniqid()]);
   };
 
-  deleteFormGroup = (e) => {
-    let array = this.state.experienceRecords;
+  const deleteFormGroup = (e) => {
+    let array = [...experienceRecords];
     const index = array.indexOf(e.target.getAttribute("data-id"));
     if (index > -1) {
       array.splice(index, 1);
     }
-    this.setState({
-      experienceRecords: array,
-    });
+    setExperienceRecords(array);
   };
 
-  render() {
-    const { formMode } = this.props;
-    return (
-      <div className="experience-row row justify-content-center">
-        <div className="col section-col m-4 form-bg">
-          <div className="icon-wrapper">
-            <BriefcaseFill color="#ffefff" size={50} />
-          </div>
-          <SectionTitle title="Experience" />
-          <div className="row">
-            {this.state.experienceRecords.map((experienceID) => {
-              return (
-                <InputExperience
-                  id={experienceID}
-                  key={experienceID}
-                  formMode={formMode}
-                  deleteMethod={this.deleteFormGroup}
-                />
-              );
-            })}
-            {formMode === "edit" ? <AddMore handleChange={this.handleChange} /> : ""}
-          </div>
-        </div>
+  return (
+    <div className="experience-row row justify-content-center">
+    <div className="col section-col m-4 form-bg">
+      <div className="icon-wrapper">
+        <BriefcaseFill color="#ffefff" size={50} />
       </div>
-    );
-  }
-}
+      <SectionTitle title="Experience" />
+      <div className="row">
+        {experienceRecords.map((experienceID) => {
+          return (
+            <InputExperience
+              id={experienceID}
+              key={experienceID}
+              formMode={formMode}
+              deleteMethod={deleteFormGroup}
+            />
+          );
+        })}
+        {formMode === "edit" ? <AddMore handleChange={handleChange} /> : ""}
+      </div>
+    </div>
+  </div>
+  );
+};
 
 export default Experience;

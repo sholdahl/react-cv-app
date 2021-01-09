@@ -1,55 +1,57 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import InputText from "./InputText";
 import InputDate from "./InputDate";
 import Button from "./Button";
 
-class InputEducation extends Component {
-  constructor() {
-    super();
-    this.state = {
-      schoolName: "",
-      studyTitle: "",
-      educationStartDate: "",
-      educationEndDate: "",
-    };
-  }
+const InputEducation = (props) => {
+  const { id, formMode, deleteMethod } = props;
+  const [schoolName, setSchoolName] = useState("");
+  const [studyTitle, setStudyTitle] = useState("");
+  const [educationStartDate, setEducationStartDate] = useState("");
+  const [educationEndDate, setEducationEndDate] = useState("");
 
-  handleChange = (e) => {
-    this.setState({
-      [e.target.name]: e.target.value,
-    });
+  const handleChange = (e) => {
+    if(e.target.name === "schoolName"){
+      setSchoolName(e.target.value)
+    } else if (e.target.name === "studyTitle") {
+      setStudyTitle(e.target.value)
+    } else if (e.target.name === "educationStartDate") {
+      setEducationStartDate(e.target.value)
+    } else if (e.target.name === "educationEndDate") {
+      setEducationEndDate(e.target.value)
+    } else {
+      console.log("failed")
+    }
   };
 
-  render() {
-    const { id, formMode, deleteMethod } = this.props;
-    return (
-      <div className="form-group row" data-id={id}>
+  return(
+    <div className="form-group row" data-id={id}>
         <InputText
           inputLabel="School Name"
           inputName="schoolName"
           colClass="col-12 col-sm-6"
-          onChange={this.handleChange}
+          onChange={handleChange}
           formMode={formMode}
         />
         <InputText
           inputLabel="Degree or Title of Study"
           inputName="studyTitle"
           colClass="col-12 col-sm-6"
-          onChange={this.handleChange}
+          onChange={handleChange}
           formMode={formMode}
         />
         <InputDate
           inputLabel="Start Date"
           inputName="educationStartDate"
           colClass="col-12 col-sm-6"
-          onChange={this.handleChange}
+          onChange={handleChange}
           formMode={formMode}
         />
         <InputDate
           inputLabel="End Date"
           inputName="educationEndDate"
           colClass="col-12 col-sm-6"
-          onChange={this.handleChange}
+          onChange={handleChange}
           formMode={formMode}
         />
         {formMode === "edit" ? (
@@ -58,8 +60,7 @@ class InputEducation extends Component {
           ""
         )}
       </div>
-    );
-  }
-}
+  )
+};
 
 export default InputEducation;
